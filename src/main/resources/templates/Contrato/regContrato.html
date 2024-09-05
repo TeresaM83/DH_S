@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+
+<header th:replace="layout::menu-admin"></header>
+<div th:replace="layout::titulo"></div>
+<div class="row justify-content-center mx-0 my-4">
+    <div class="col-5">
+        <form th:action="@{/contrato/registrar}" th:object="${contrato}"
+              method="post" id="formCon" onsubmit="return validarFormularioCont();">
+            <div>
+                <label>Edificio</label> <select id="id_edificio" class="form-select"
+                                                title="Seleccione un edificio">
+                <option value="0">--Seleccionar Edificio--</option>
+                <option th:each="edificio:${listedificios}"
+                        th:text="${edificio.direccion}" th:value="${edificio.id}"></option>
+            </select>
+            </div>
+            <div>
+                <label>Departamento</label> <select id="id_depa"
+                                                    th:field="*{departamento}" class="form-select"
+                                                    title="Seleccione un departamento">
+                <option value="0">--Seleccionar Departamento--</option>
+                <option th:each="depa:${depa}"
+                        th:text="${depa.id}" th:value="${depa.id}"></option>
+            </select>
+            </div>
+            <div>
+                <label>Cliente</label> <select th:field="*{cliente}"
+                                               class="form-select" title="Seleccione un cliente">
+                <option th:each="cliente:${listclientes}"
+                        th:text="${cliente.nombres}+' '+${cliente.a_paterno}+' '+${cliente.a_materno}"
+                        th:value="${cliente.id}"></option>
+            </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tiempo de estadía (Meses)</label> <input
+                    type="number" th:field="*{estadia_meses}" class="form-control"
+                    id="n_estadia_meses" min="1" pattern="^[0-9]+" required
+                    placeholder="Ingrese el tiempo de su estadía en meses"/>
+            </div>
+            <div class="mb-3" id="pgarantia">
+                <label class="form-label">Monto garantía</label> <input
+                    type="number" th:field="*{garantia}" class="form-control"
+                    id="garantia" placeholder="Debe seleccionar un departamento" readonly/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha</label> <input type="date"
+                                                               th:field="*{fecha_contrato}" class="form-control"
+                                                               id="fecha"
+                                                               placeholder="fecha" readonly/>
+            </div>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-success" th:text="${button}"></button>
+                <!-- Boton Modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#cancelarModal">Cancelar
+                </button>
+            </div>
+            <input type="hidden" th:field="*{id}"/>
+        </form>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="cancelarModal" data-bs-backdrop="static"
+     tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ADVERTENCIA</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">¿Seguro que desea cancelar la
+                operación?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">No
+                </button>
+                <a class="btn btn-primary" href="/contrato/listar">Sí</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="layout::footer-mant"></footer>
+
+<script th:inline="javascript">
+    var contextPath = "listaDepas";
+    $("#id_edificio")
+        .change(
+            function () {
+                $.getJSON(
+                    contextPath,
+                    {
+                        idEdificio: $(this).val(),
+                        ajax: 'true'
+                    },
+                    function (data) {
+                        var html = '<option value="0">--Seleccionar Departamento--</option>';
+                        var tamaño = data.length;
+                        for (var i = 0; i < tamaño; i++) {
+                            html += '<option value="' + data[i].id + '">'
+                                + data[i].id
+                                + '</option>';
+                        }
+                        $("#id_depa").html(html);
+                    });
+            });
+
+    $("#id_depa")
+        .change(
+            function () {
+                $.getJSON(
+                    "precioDepa",
+                    {
+                        idDepa: $(this).val(),
+                        ajax: 'true'
+                    },
+                    function (data) {
+                        var html2 = '<label class="form-label">Monto garantía</label><input type="number" name="garantia" value="'
+                            + data.precio * 2 +
+                            '" class="form-control" id="garantia" readonly/>';
+                        $("#pgarantia").html(html2);
+                    });
+            });
+</script>
+</body>
+</html>

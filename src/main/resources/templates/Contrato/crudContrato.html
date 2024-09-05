@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<section layout:fragment="contenido">
+
+    <button type="button" class="btn btn-success my-2" id="btnRegistrarContrato">Nuevo Contrato</button>
+    <table class="table table-hover table-bordered dt-responsive text-center no-shadow display nowrap py-3"
+           id="tabla-contrato" width="100%">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Edificio</th>
+            <th>Departamento</th>
+            <th>Estadía</th>
+            <th>Fecha</th>
+            <th>Garantía</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white">
+        </tbody>
+    </table>
+
+    <!--FORMULARIO MODAL-->
+    <div class="modal fade" id="mdlContrato" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="frmContrato">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="titulo"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label>Seleccione el edificio</label>
+                            <select id="select-edificios" class="form-select">
+                                <option value="" disabled>[Seleccione]</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Seleccione el departamento</label>
+                            <select id="select-departamentos" class="form-select" name="departamento">
+                                <option value="" disabled>[Seleccione]</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Seleccione el cliente</label>
+                            <select id="select-clientes" class="form-select" name="cliente">
+                                <option value="" disabled>[Seleccione]</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tiempo de estadía (Meses)</label> <input
+                                type="number" name="estadia_meses" class="form-control"
+                                id="txtestadia" placeholder="Ingrese el tiempo de estadía en meses"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Monto garantía</label> <input
+                                type="number" name="garantia" class="form-control"
+                                id="txtgarantia" placeholder="Debe seleccionar un departamento" readonly/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fecha</label> <input
+                                type="date" name="fecha_contrato" class="form-control"
+                                id="txtfecha" placeholder="fecha" readonly/>
+                        </div>
+                        <input type="hidden" name="id" id="hddid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary"
+                                data-bs-dismiss="modal" id="btnCancelar">Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="btnGuardarDatos"><i class="fas fa-save"></i>&nbsp;Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<th:block layout:fragment="page-scripts">
+    <script th:src="@{/js/Contrato/crudContrato.js}">
+    </script>
+</th:block>
+</body>
+</html>

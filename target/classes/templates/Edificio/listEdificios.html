@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<section layout:fragment="contenido">
+    <div
+            th:if="${mensaje != null}" th:text="${mensaje}" class="alert"
+            th:classappend="'alert-danger text-center'">
+    </div>
+    <div class="table-responsive">
+        <a class="btn btn-success my-2" th:href="@{/edificio/registrar}">Crear
+            Edificio</a>
+        <table
+                class="table table-hover text-center table-bordered table-ligth py-3"
+                style="vertical-align: middle;" id="tabla-edificio">
+            <thead>
+            <tr class="table-dark">
+                <th>ID</th>
+                <th>Número de pisos</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="edificio:${edificios}">
+                <td th:text="${edificio.id}"></td>
+                <td th:text="${edificio.n_pisos}"></td>
+                <td th:text="${edificio.direccion}"></td>
+                <td><a class="btn btn-primary btn-xs fa fa-pencil mx-1 icon-edit"
+                       style="padding-inline: 7px;"
+                       th:href="@{/edificio/editar/}+${edificio.id}"></a>
+                    <a class="btn btn-danger btn-xs fa fa-trash mx-1 icon-delete"
+                       id="btnEliminar"></a>
+                    <input th:value="${edificio.id}" id="codigo" hidden/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<th:block layout:fragment="page-scripts">
+    <script>
+        $(document).ready(function () {
+            $("tr #btnEliminar").click(function () {
+                var id = $(this).parent().find("#codigo").val();
+                console.log(id)
+                Swal.fire({
+                    title: '¿Estás seguro en eliminar?',
+                    text: "Se eliminará el edificio!!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Eliminar edificio',
+                            text: "Edificio eliminado correctamente",
+                            icon: 'info'
+                        }).then((result) => {
+                            location.href = "/edificio/eliminar/" + id;
+                        })
+                    } else {
+                        Swal.fire("Cancelado", "Canceló la operación", "info");
+                    }
+                })
+            })
+        })
+    </script>
+</th:block>
+</body>
+</html>

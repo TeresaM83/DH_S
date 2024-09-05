@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${titulo}"></title>
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link rel="stylesheet" th:href="@{/datatables/datatables.min.css}">
+</head>
+<body>
+
+<header th:fragment="menu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">DREAM HOUSE</a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+                    aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/catalogo">Catálogo</a></li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item"><a
+                            class="nav-link" href="/user/cronograma">Cronograma</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li sec:authorize="!isAuthenticated()"><a
+                            class="btn btn-primary" th:href="@{/login}">Iniciar Sesión</a></li>
+                    <li sec:authorize="isAuthenticated()"><a
+                            class="btn btn-danger" th:href="@{/logout}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<header th:fragment="menu-admin">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand">DREAM HOUSE</a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarMenuAdmin"
+                    aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenuAdmin">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown"><a
+                            class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Mantenimiento </a>
+                        <ul class="dropdown-menu"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/edificio/listar">Edificios</a></li>
+                            <li><a class="dropdown-item" href="/departamento/listar">Departamentos</a></li>
+                            <li><a class="dropdown-item" href="/cliente/listar">Clientes</a></li>
+                            <li><a class="dropdown-item" href="/contrato/listar">Contratos</a></li>
+                            <li><a class="dropdown-item" href="/alquiler/listar">Alquiler</a></li>
+                            <li><a class="dropdown-item" href="/pago/listar">Pagos</a></li>
+                            <li><a class="dropdown-item" href="/solicitud/listar">Solicitudes</a></li>
+                            <li><a class="dropdown-item" href="/usuario/listar">Usuarios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+
+                    <li sec:authorize="isAuthenticated()"><a
+                            class="btn btn-danger" th:href="@{/logout}">Cerrar Sesión</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<div th:fragment="titulo">
+    <div class="p-5 text-center" style="background-color: #F1F1F1;">
+        <h1 th:text="${titulo}"></h1>
+    </div>
+</div>
+
+<div th:fragment="footer-catalogo">
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                    <div class="contact">
+                        <div class="d-flex">
+                            <h4 class="sub-titulo">
+                                <img class="icon" src="/images/footer/vocina.png">
+                                Atención al cliente
+                            </h4>
+                        </div>
+                        <ul class="lik pl-5">
+                            <li><a href="#">Términos y Condiciones</a></li>
+                            <li><a href="#">Contáctanos</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact">
+                        <div class="d-flex">
+
+                            <h4 class="sub-titulo">
+                                <img class="icon" src="/images/footer/email.png">
+                                Sugerencias
+                            </h4>
+                        </div>
+                        <ul class="lik pl-5">
+                            <li><a href="#">sugerencias@dreamhouse.com</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                    <div class="contact">
+                        <div class="d-flex">
+                            <h4 class="sub-titulo">
+                                <img class="icon" src="/images/footer/ubi.png"> Nuestros
+                                Locales
+                            </h4>
+                        </div>
+                        <ul class="lik pl-5">
+                            <li><a href="#">Jr. Puno 615 A - Cercado de Lima</a></li>
+                            <li><a href="#">Av. México 1039 - La Victoria</a></li>
+                            <li><a href="#">Av. Aviación 2792 - San Borja</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact">
+                        <div class="d-flex">
+                            <h4 class="sub-titulo">
+                                <img class="icon" src="/images/footer/telefono.png">
+                                Teléfono
+                            </h4>
+                        </div>
+                        <ul class="lik pl-5">
+                            <li><a href="#">01 111 111</a></li>
+                        </ul>
+                    </div>
+                    <div class="contact">
+                        <div class="d-flex">
+                            <h4 class="sub-titulo">
+                                <img class="icon" src="/images/footer/reloj.png"> Lunes a
+                                Sábado
+                            </h4>
+                        </div>
+                        <ul class="lik pl-5">
+                            <li><a href="#">09:00 am a 06:00pm</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 m-auto">
+                    <div class="contact">
+                        <h4 class="text-center sub-titulo">SÍGUENOS EN NUESTRAS
+                            REDES SOCIALES</h4>
+                        <h4 class="text-center">
+                            <a href="#"> <img class="icon-redes" id="icon1"
+                                              onmouseover="iconosover('icon1')"
+                                              onmouseleave="iconosleave('icon1')"
+                                              src="/images/footer/facebook.png">
+                            </a> <a href="#"> <img class="icon-redes" id="icon2"
+                                                   onmouseover="iconosover('icon2')"
+                                                   onmouseleave="iconosleave('icon2')"
+                                                   src="/images/footer/tik-tok.png">
+                        </a> <a href="#"> <img class="icon-redes" id="icon3"
+                                               onmouseover="iconosover('icon3')"
+                                               onmouseleave="iconosleave('icon3')"
+                                               src="/images/footer/instagram.png">
+                        </a>
+                        </h4>
+                        <div class="row">
+                            <div class="col-12">
+                                <ul class="sociel">
+                                    <li><a href="#"></a></li>
+                                    <li><a href="#"></a></li>
+                                    <li><a href="#"></a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <ul class="text-center mt-3 lik">
+                                    <li><a href="#"> Unete a nuestra Red de Mayorístas </a></li>
+                                    <li><a href="#"> <img class="icon-redes"
+                                                          src="/images/footer/libro-abierto.png"> LIBRO DE
+                                        RECLAMACIONES
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>
+                Copyright © 2022 <a href="#">Dream House.</a> Todos los derechos
+                reservados.
+            </p>
+        </div>
+    </div>
+    <script th:src="@{/js/jquery/jquery-3.6.0.js}"></script>
+    <script th:src="@{/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{/datatables/datatables.min.js}"></script>
+    <script th:src="@{/sweetalert2/sweetalert2.js}"></script>
+    <script th:src="@{/js/catalogo.js}"></script>
+    <script th:src="@{js/footer.js}"></script>
+    <script th:src="@{/js/jquery/dataTable.js}"></script>
+    <script src="https://kit.fontawesome.com/48cb0b1b79.js"
+            crossorigin="anonymous"></script>
+</div>
+
+<div th:fragment="footer-mant">
+    <script th:src="@{/js/jquery/jquery-3.6.0.js}"></script>
+    <script th:src="@{/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{/datatables/datatables.min.js}"></script>
+    <script th:src="@{/sweetalert2/sweetalert2.js}"></script>
+    <script th:src="@{/js/catalogo.js}"></script>
+    <script th:src="@{/js/footer.js}"></script>
+    <script th:src="@{/js/jquery/dataTable.js}"></script>
+    <script src="https://kit.fontawesome.com/48cb0b1b79.js"
+            crossorigin="anonymous"></script>
+</div>
+
+
+</body>
+</html>

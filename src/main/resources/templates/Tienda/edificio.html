@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<header th:replace="layout::menu"></header>
+
+	<section>
+		<div class="container-fluid banner">
+			<div class="contenedor">
+				<h1>
+					<span id="titulo-banner">EDIFICIOS</span>
+				</h1>
+				<span class="info">Gran variedad de Edificios para que elija
+					la opción que más le guste.</span>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="px-3 py-5 my-3" style="background-color: #EDEDED;">
+			<h3 class="text-center" style="font-family: emoji;">
+				Encuentre lo que está buscando, le presentamos los <strong>
+					edificios </strong> disponibles.
+			</h3>
+			<div class="row justify-content-center p-3">
+				<div class="col-11 col-md-6 col-lg-4 py-3"
+					th:each="edificio:${edificios}">
+					<div class="card border-0">
+						<a th:href="@{'/imagesMantenimiento/Edificio/' + ${edificio.imagen}}"> <img
+							th:src="@{'/imagesMantenimiento/Edificio/' + ${edificio.imagen}}"
+							class="card-img-top img-depa" alt="">
+						</a>
+						<div class="card-body">
+							<h4 class="card-title mb-0"
+								th:text=" 'Edificio ' +  ${edificio.id}"></h4>
+							<h5 class="card-text" th:text="${edificio.direccion}"></h5>
+							<p class="card-text" th:text="${edificio.n_pisos}+ ' Pisos' "></p>
+						</div>
+						<div class="card-footer border-top">
+							<div class="text-center btn-accion">
+								<a class="btn btn-success btn-alquilar"
+									th:href="@{/catalogo/}+${edificio.id}">Departamentos</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<div th:replace="layout::footer-catalogo"></div>
+</body>
+
+</html>

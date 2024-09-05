@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<section layout:fragment="contenido">
+
+    <div class="table-responsive">
+        <button type="button" class="btn btn-success my-2" id="btnAgregarEdificio">Nuevo
+            Edificio
+        </button>
+        <table class="table table-hover text-center table-bordered table-light py-3" id="tblEdificio">
+            <thead>
+            <tr class="table-dark">
+                <th>ID</th>
+                <th>Número de pisos</th>
+                <th>Dirección</th>
+                <th>Imagen</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="edificio:${edificios}">
+                <td th:text="${edificio.id}"></td>
+                <td th:text="${edificio.n_pisos}"></td>
+                <td th:text="${edificio.direccion}"></td>
+                <td th:text="${edificio.imagen}"></td>
+                <td>
+                    <button type="button"
+                            class="btn btn-primary btn-xs fa fa-pencil mx-1 icon-edit btnActualizarEdificio"
+                            th:data-id="${edificio.id}"
+                            th:data-npisos="${edificio.n_pisos}"
+                            th:data-direccion="${edificio.direccion}"
+                            th:data-imagen="${edificio.imagen}">
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs fa fa-trash mx-1 icon-delete btnEliminarEdificio"
+                            th:data-id="${edificio.id}"></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="modalEdificio" tabindex="-1"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" enctype="multipart/form-data" id="formularioEdificio">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Mantenimiento
+                            Edificio</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="txtnpisos" class="form-label">Número de pisos:</label> <input
+                                type="number" class="form-control" name=n_pisos id="txtnpisos"
+                                placeholder="Ingrese el número de pisos" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtdireccion" class="form-label">Dirección:</label> <input
+                                type="text" class="form-control" name=direccion id="txtdireccion"
+                                placeholder="Ingrese la direccion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label">Imagen:</label> <input
+                                type="file" class="form-control" name="archivo" id="imagen" accept="image/*"
+                                >
+                        </div>
+                        <input type="hidden" name="id" id="hddid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal" id="btnCancelar">Cancelar
+                        </button>
+                        <button type="button" class="btn btn-primary" id="btnGuardarCambios">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<th:block layout:fragment="page-scripts">
+    <script th:src="@{/js/Edificio/mantEdificio.js}">
+    </script>
+</th:block>
+</body>
+</html>

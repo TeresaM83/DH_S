@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<header th:replace="layout::menu-admin"></header>
+<div th:replace="layout::titulo"></div>
+
+<div class="row justify-content-center mx-0 my-4">
+    <div class="col-5">
+        <form th:action="@{/usuario/registrar}" th:object="${usuario}"
+              method="post" id="frmUsuario">
+            <div class="mb-3">
+                <label class="form-label">Correo</label>
+                <input type="email" th:field="*{email}" class="form-control"
+                       id="email" placeholder="Ingrese su username" required/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <input type="password" th:field="*{password}" class="form-control"
+                       id="password" placeholder="Ingrese su contraseña" required/>
+            </div>
+            <div class="mb-3">
+                <label>Seleccione el rol</label>
+                <th:block th:each="rol:${listroles}">
+                    <div>
+                        <input type="checkbox" th:field="*{roles}" th:text="${rol.nombre}" th:value="${rol.id}"/>
+                    </div>
+                </th:block>
+            </div>
+            <div class="mb-3">
+                <label>Seleccione el estado</label>
+                <select th:field="*{estado}" class="form-select">
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+            </div>
+            <input type="hidden" th:field="*{id}"/>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-success" th:text="${button}"></button>
+                <!-- Boton Modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#cancelarModal">Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="cancelarModal" data-bs-backdrop="static"
+     tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ADVERTENCIA</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">¿Seguro que desea cancelar la
+                operación?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">No
+                </button>
+                <a class="btn btn-primary" href="/usuario/listar">Sí</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="layout::footer-mant"></footer>
+</body>
+</html>

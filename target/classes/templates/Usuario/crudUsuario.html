@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<section layout:fragment="contenido">
+
+    <button type="button" class="btn btn-success my-2" id="btnRegistrarUsuario">Nuevo Usuario</button>
+    <table class="table table-hover table-bordered dt-responsive text-center no-shadow display nowrap py-3"
+           id="tabla-usuario" width="100%">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Imagen</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white">
+        </tbody>
+    </table>
+
+    <!--FORMULARIO MODAL-->
+    <div class="modal fade" id="mdlUsuario" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="frmUsuario">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="titulo"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control"
+                                   id="txtemail" placeholder="Ingrese su correo" autocomplete="off"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control"
+                                   id="txtpassword" placeholder="Ingrese su contraseña" autocomplete="off"/>
+                        </div>
+                        <div class="mb-3">
+                            <label>Seleccione el rol</label>
+                            <div id="div-roles">
+
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>Seleccione el estado</label>
+                            <select class="form-select" name="estado" id="select-estado">
+                                <option value="" disabled>[Seleccione]</option>
+                                <option value="pendiente" id="optPendiente">Pendiente</option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label">Imagen:</label>
+                            <input type="file" class="form-control" name="archivo" id="imagen"
+                                   accept="image/*" onchange="previewImage(event)">
+                        </div>
+                        <div class="md-3 d-none" id="preview">
+                            <span id="cerrarPreview"></span>
+                            <p class="d-none" id="nombre-imagen"></p>
+                            <img class="img-fluid" id="previewUsuarioImg">
+                        </div>
+                        <input type="hidden" name="id" id="hddid">
+                    </div>
+                    <div class="modal-footer">
+                        <div id="secc-admin"></div>
+                        <button type="reset" class="btn btn-secondary"
+                                data-bs-dismiss="modal" id="btnCancelar">Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary"
+                                id="btnGuardarDatos"><i class="fas fa-save"></i>&nbsp;Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<th:block layout:fragment="page-scripts">
+    <script th:src="@{/js/Usuario/crudUsuario.js}">
+    </script>
+</th:block>
+</body>
+</html>

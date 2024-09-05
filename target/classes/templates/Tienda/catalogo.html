@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<header th:replace="layout::menu"></header>
+	<section>
+		<div class="container-fluid banner">
+			<div class="contenedor">
+				<h1>
+					<span id="titulo-banner">CATÁLOGO</span>
+				</h1>
+				<span class="info">Tu comodidad es nuestra prioridad, confía en los que saben</span>
+			</div>
+		</div>
+	</section>
+	<section style="background-color: #EDEDED;">
+		<h1 class="p-5" th:object="${edificio}" th:text="'Edificio ubicado en: ' + ${edificio.direccion}"  style="text-align: center;font-family: emoji;"></h1>
+		<div class="row vimi pb-5" style="align-items: center;">
+            <div class="col-lg-5 col-sm-12 py-5 ">
+                <img style="height: 500px; width: 100%;" src="../images/catalogo/edificio.png" class="card imag">
+            </div>
+            <div class="col-lg-7 col-sm-12 py-5  card justify-content-center " style="background-color: #EDEDED;">
+                <div class="row text-center">
+                    <div class="col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                        Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/icon-vivienda.png"
+                                width="55" height="55"></figure><span class="text-iconos">
+                            Vivienda Verde</span>
+                    </div>
+                    <div class="col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                        Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-funcional-center-min.png"
+                                width="55" height="55"></figure><span class="text-iconos">
+                            Gimnasio</span>
+                    </div>
+                    <div class="col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                        Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-piscina-min.png"
+                                width="55" height="55"></figure><span class="text-iconos">
+                            Piscina</span>
+                    </div>
+                    <div class="col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                        Coworking" data-ll-status="loaded" src="https://invent.com.pe/uploads/icon-optica.png"
+                                width="55" height="55"></figure><span class="text-iconos">Fibra
+                            Optica</span>
+                    </div>
+                    <div class="col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                    Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-de-salon-de-nin-os-min.png"
+                                width="55" height="55"></figure><span class="text-iconos">Salon de
+                            Niños</span>
+                    </div>
+                    <div class=" col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                        Coworking" data-ll-status="loaded" src="https://invent.com.pe/uploads/icon-gas.png" width="55"
+                                height="55"></figure><span class="text-iconos">
+                            Gas</span>
+                    </div>
+                    <div class=" col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-zona-de-parrilla.png"
+                                width="55" height="55"></figure><span class="text-iconos">Zona de
+                            Parrillas</span>
+                    </div>
+                    <div class=" col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-centro-de-lavados.png"
+                                width="55" height="55"></figure><span class="text-iconos">Centro de
+                            Lavado</span>
+                    </div>
+                    <div class=" col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-estacionamiento-de-bicicleta.png"
+                                width="55" height="55"></figure><span class="text-iconos">Estacionamiento
+                            de Bicicletas</span>
+                    </div>
+                    <div class=" col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-coworking-min.png"
+                                width="55" height="55"></figure><span class="text-iconos">Área
+                            Coworking</span>
+                    </div>
+                    <div class=" col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-terraza.png" width="55"
+                                height="55"></figure><span class="text-iconos">terraza
+                        </span>
+                    </div>
+                    <div class=" col-lg-4 col-md-6 p-2 ">
+                        <figure><img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+                                src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-lobby.png" width="55"
+                                height="55"></figure><span class="text-iconos">Descanso
+                        </span>
+                    </div>
+                </div>
+            </div>
+	</section>
+	<section>
+		<div class="px-3 py-5" style="background-color: #EDEDED;">
+            <h3 class="text-center" style="font-family: emoji;"><b  th:text="${disponibles} + '  Departamentos disponibles'"></b></h3>
+			<div class="row justify-content-center p-3">
+				<div class="col-11 col-md-6 col-lg-4 py-3 " th:each="departamento:${departamentos}">
+					<div class="card border-0">
+						<a href="/images/catalogo/depa-1.jpg"> <img
+							src="/images/catalogo/depa-1.jpg" class="card-img-top img-depa"
+							alt="">
+						</a>
+						<div class="card-body">
+							<h5 class="card-title mb-0" th:text="'Departamento ' + ${departamento.id}"></h5>
+							<p class="card-text"th:text=" ${departamento.n_habitaciones} +' Habitaciones'"></p>
+							<h5 th:text="'S/. ' + ${departamento.precio} +' al mes'"></h5>
+						</div>
+						<div class="card-footer border-top">
+							<div class="text-center btn-accion">
+								<a class="btn btn-primary btn-detalles"
+									th:href="@{/catalogo/departamento/}+${departamento.id}">Detalles</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div th:replace="layout::footer-catalogo"></div>
+</body>
+
+</html>

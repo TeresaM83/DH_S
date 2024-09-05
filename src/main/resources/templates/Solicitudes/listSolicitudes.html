@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<section layout:fragment="contenido">
+    <div class="table-responsive">
+        <table class="table table-hover text-center table-bordered table-ligth py-3" style="vertical-align: middle; width: 100% !important;"
+               id="tabla-pago">
+            <thead>
+            <tr class="table-dark">
+                <th>Solicitante</th>
+                <th>Edificio solicitado</th>
+                <th>Piso solicitado</th>
+                <th>Contacto</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p:${solicitudes}">
+                <td th:text="${p.persona.nombres}"></td>
+                <td th:text="${p.depa.edificio.direccion}"></td>
+                <td th:text="${p.depa.piso}"></td>
+                <td th:text="${p.telefono}"></td>
+                <td><a
+                        class="btn btn-danger btn-xs fa fa-trash mx-1" th:href="@{/solicitud/eliminar/}+${p.id}"
+                        style="padding-inline: 8px;"
+                        onclick="return confirm('Estás seguro que deseas eliminar?');"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+
+</html>

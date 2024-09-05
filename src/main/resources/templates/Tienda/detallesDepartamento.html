@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout::head">
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<header th:replace="layout::menu"></header>
+	<section>
+		<div class="container-fluid banner">
+			<div class="contenedor">
+				<h1>
+					<span id="titulo-banner">DREAM HOUSE</span>
+				</h1>
+				<span class="info">Gran variedad de departamentos para que
+					elija la opción que más le guste.</span> <a class="boton-catalogo" href="/catalogo">Catálogo</a>
+			</div>
+		</div>
+	</section>
+	<section style="background-color: #EDEDED;">
+		<h1 class="p-5" th:object="${departamento}" th:text="${departamento.edificio.direccion}"
+			style="text-align: center; font-family: 'Times New Roman', Times, serif;"></h1>
+		<h1 class="m-2" th:object="${departamento}" th:text="'Piso Nº'+ ${departamento.piso}"
+			style="text-align: center; font-family: 'Times New Roman', Times, serif;"></h1>
+
+		<div class="row vimi" style="align-items: center;">
+			<div class="col-lg-5 col-sm-12 py-5">
+				<img style="height: 500px;" src="/images/catalogo/depa-1.jpg" class="card imag">
+			</div>
+			<div class="col-lg-7 col-sm-12 py-5  card justify-content-center " style="background-color:  #EDEDED;">
+				<div class="row text-center">
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class="iconos" alt="Área
+                        Coworking" data-ll-status="loaded" src="https://invent.com.pe/static/img/icon-area.png"
+								width="55" height="55">
+						</figure>
+						<span class="text-iconos" th:object="${departamento}"
+							th:text="'Area '+${departamento.area}+' m²'"></span>
+					</div>
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class="iconos" alt="Área
+                        Coworking" data-ll-status="loaded" src="https://invent.com.pe/uploads/icon-gas.png" width="55"
+								height="55">
+						</figure>
+						<span class="text-iconos">Gas</span>
+					</div>
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded" src="https://invent.com.pe/static/img/icon-bathroom.png"
+								width="55" height="55">
+						</figure>
+						<span class="text-iconos" th:object="${departamento}"
+							th:text="${departamento.n_banos} + ' Baños'"></span>
+					</div>
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class=" iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+								src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-centro-de-lavados.png"
+								width="55" height="55">
+						</figure>
+						<span class="text-iconos">Centro de Lavado
+						</span>
+					</div>
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded" src="https://invent.com.pe/static/img/icon-bed.png"
+								width="55" height="55">
+						</figure>
+						<span class="text-iconos" th:object="${departamento}"
+							th:text="${departamento.n_habitaciones} + ' Habitaciones'">
+						</span>
+					</div>
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+								src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-coworking-min.png"
+								width="55" height="55">
+						</figure>
+						<span class="text-iconos">Área Coworking
+						</span>
+					</div>
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+								src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-bar.png" width="55"
+								height="55">
+						</figure>
+						<span class="text-iconos">Bar
+						</span>
+					</div>
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+								src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-terraza.png" width="55"
+								height="55">
+						</figure>
+						<span class="text-iconos">terraza
+						</span>
+					</div>
+					<div class="col-lg-4 col-md-6 p-2">
+						<figure>
+							<img class="iconos" alt="Área
+                            Coworking" data-ll-status="loaded"
+								src="https://invent.com.pe/uploads/iconos-areas-comunes/icono-lobby.png" width="55"
+								height="55">
+						</figure>
+						<span class="text-iconos">Descanso
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+		th:text="${mensaje}"
+		class="alert">
+</div>
+		<div class="card-footer border-top my-3">
+			<div class="text-center btn-accion">
+				<button class="btn btn-detalles" data-bs-toggle="modal" data-bs-target="#exampleModal"
+					><b>Separar Departamento</b></button>
+			</div>
+		</div>
+		<div class="card-footer border-top my-3">
+			<div class="text-center btn-accion">
+			<a class="btn btn-detalles" href="https://web.whatsapp.com/"  target="_blank"><b>Separar Cita</b></a>
+			</div>
+		</div>
+	</section>
+	<div class="modal fade" id="exampleModal" data-bs-backdrop="static"
+		tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Separar Departamento</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<!-- <h1> Para separar un departamento primero ingrese su dni</h1> -->
+					<form class="row g-3" id="formDni" th:action="@{'/catalogo/departamento/'+${departamento.id}}" th:object="${persona}" method="post" onsubmit="return enviardni();" >
+						<div class="col-10">
+							<label for="dnicli" class="visually-hidden">DNI:</label>
+							<input type="number" min="1" pattern="^[0-9]+" class="form-control" id="dnicli" th:field="*{dni}" placeholder="Ingrese su número de dni" required>
+						</div>
+						<div class="col-2">
+							<button  class="btn btn-primary mb-3 d-flex">Enviar</button>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="layout::footer-catalogo"></div>
+</body>
+
+</html>

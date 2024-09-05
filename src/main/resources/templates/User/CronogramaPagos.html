@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
+<link rel="stylesheet"
+	href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+</head>
+<body>
+	<header th:replace="layout::menu"></header>
+	
+	<div th:replace="layout::titulo"></div>
+	
+	<div class="container-fluid p-5">
+		<div class="table-responsive">
+			<table
+				class="table table-hover text-center table-bordered table-ligth py-3"
+				style="vertical-align: middle; width: 100% !important;" id="tabla-pago">
+				<thead>
+					<tr class="table-dark">
+
+
+						<th>Monto a Pagar</th>
+						<th>Fecha Vencimiento</th>
+						<th>Fecha de Pago</th>
+						<th>Estado</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p:${pagos}">
+
+
+						<td th:text="${p.alquiler.contrato.departamento.precio}"></td>
+						<td th:text="${p.fecha_pago}"></td>
+						<td th:text="${p.fecha_pcliente}"></td>
+						<td th:text="${p.estado}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div th:replace="layout::footer-catalogo"></div>
+</body>
+</html>

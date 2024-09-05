@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<section layout:fragment="contenido">
+    <div
+            th:if="${mensaje != null}" th:text="${mensaje}" class="alert"
+            th:classappend="'alert-danger text-center'">
+    </div>
+    <div class="table-responsive">
+        <a class="btn btn-success my-2" th:href="@{/cliente/registrar}">Crear
+            Cliente</a>
+        <table
+                class="table text-center table-hover table-bordered table-ligth py-3"
+                style="vertical-align: middle;" id="tabla-cliente">
+            <thead>
+            <tr class="table-dark">
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>N° DNI</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cliente:${clientes}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.nombres}"></td>
+                <td th:text="${cliente.a_paterno}"></td>
+                <td th:text="${cliente.a_materno}"></td>
+                <td th:text="${cliente.dni}"></td>
+                <td th:text="${cliente.telefono}"></td>
+                <td><a class="btn btn-primary btn-xs fa fa-pencil mx-1 icon-edit"
+                       th:href="@{/cliente/editar/}+${cliente.id}"></a>
+                    <a class="btn btn-danger btn-xs fa fa-trash mx-1 icon-delete"
+                       th:href="@{/cliente/eliminar/}+${cliente.id}"
+                       onclick="return confirm('Estás seguro que deseas eliminar?');"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

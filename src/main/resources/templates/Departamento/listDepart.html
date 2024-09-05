@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<section layout:fragment="contenido">
+    <div
+            th:if="${mensaje != null}" th:text="${mensaje}" class="alert"
+            th:classappend="'alert-danger text-center'">
+    </div>
+    <div class="table-responsive">
+        <a class="btn btn-success my-2" th:href="@{/departamento/registrar}">Crear
+            Departamento</a>
+        <div class="table-responsive">
+            <table
+                    class="table text-center table-hover table-bordered table-ligth py-3"
+                    style="vertical-align: middle;" id="tabla-departamento">
+                <thead class="align-items-center">
+                <tr class="table-dark">
+                    <th>ID</th>
+                    <th>Edificio</th>
+                    <th>N° Piso</th>
+                    <th>N° Habitaciones</th>
+                    <th>N° Baños</th>
+                    <th>Área(m2)</th>
+                    <th>Precio (S/.)</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="depa:${departamentos}">
+                    <td th:text="${depa.id}"></td>
+                    <td th:text="${depa.edificio.direccion}"></td>
+                    <td th:text="${depa.piso}"></td>
+                    <td th:text="${depa.n_habitaciones}"></td>
+                    <td th:text="${depa.n_banos}"></td>
+                    <td th:text="${depa.area}"></td>
+                    <td th:text="${depa.precio}"></td>
+                    <td th:text="${depa.estado}"></td>
+                    <td><a class="btn btn-primary btn-xs fa fa-pencil mx-1 icon-edit"
+                           th:href="@{/departamento/editar/}+${depa.id}"
+                    th:data-id="${depa.id}"></a><a
+                            class="btn btn-danger btn-xs fa fa-trash mx-1 icon-delete"
+                            th:href="@{/departamento/eliminar/}+${depa.id}"
+                            onclick="return confirm('Estás seguro que deseas eliminar?');"></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

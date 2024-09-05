@@ -1,0 +1,328 @@
+/*----SCROLL----*/
+body::-webkit-scrollbar {
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: black;
+}
+
+/*---------------BANNER-------------------*/
+.banner {
+    position: relative;
+    background: url(../images/index/banner.jpg) no-repeat center;
+    background-size: cover;
+    height: 500px;
+}
+
+.contenedor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.contenedor h1 {
+    margin: 0;
+    font-size: 70px;
+}
+
+.contenedor h1 span {
+    border: 6px solid black;
+    display: inline-block;
+    transition: .8s;
+}
+
+.nava:hover {
+    border: solid;
+    border-width: 0 0 5px 0;
+    border-color: #fff;
+    transition: 2s;
+}
+
+/*--------------------INDEX--------------------*/
+
+.vimi {
+    padding: 0px 100px 0px 100px;
+}
+
+.imag {
+    width: 100%;
+}
+
+.info {
+    margin: 20px;
+    display: block;
+    font-size: 20px;
+}
+
+.boton-catalogo {
+    color: black;
+    padding: 10px 24px;
+    background-color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    transition: .6s;
+}
+
+.boton-catalogo:hover {
+    background-color: cadetblue;
+    color: white;
+}
+
+/*------------------CATALOGO-------------------*/
+.img-depa {
+    height: 250px;
+    object-fit: cover;
+    transition: 1s;
+}
+
+.img-depa:hover {
+    opacity: .5;
+}
+
+.btn-alquilar {
+    width: 45%;
+    background-color: rgb(85, 144, 146);
+    border-color: black;
+}
+
+.btn-detalles {
+    width: 45%;
+    background-color: rgb(112, 128, 145);
+    border-color: black;
+}
+
+.btn-alquilar:hover {
+    width: 45%;
+    background-color: rgb(68, 116, 117);
+    border-color: black;
+}
+
+.btn-detalles:hover {
+    width: 45%;
+    background-color: rgb(90, 103, 117);
+    border-color: black;
+}
+
+/*------------------FOOTER--------------------*/
+/*.footer {*/
+/*    background: rgb(37, 76, 77);*/
+/*    padding-top: 70px;*/
+/*}*/
+.contact {
+    margin-top: 40px;
+}
+
+.contact .sub-titulo {
+    line-height: 1.5;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+ul.lik li a {
+    color: #fff;
+    font-size: 17px;
+    line-height: 27px;
+    text-decoration: none;
+    outline: none !important;
+    transition: .6s;
+}
+
+ul.lik li a:hover {
+    font-weight: bold;
+}
+
+li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.copyright {
+    background-color: #fff;
+    padding: 10px 0px;
+    margin-top: 70px;
+}
+
+.copyright p {
+    color: #023023;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    outline: none !important;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    margin: 6px;
+}
+
+.icon-redes {
+    width: 40px;
+    height: 40px;
+    margin: 6px;
+    transition: .6s;
+}
+
+.text-iconos {
+    font-weight: bold;
+}
+
+/*inicio*/
+.backg {
+    background-image: url("https://e.rpp-noticias.io/xlarge/2020/04/06/444844_924437.jpg");
+}
+
+.txt {
+    color: black;
+}
+
+.container {
+    max-width: 960px;
+}
+
+/*------------------------------CMS----------------------------*/
+/*Navbar*/
+.navbar-personalizado{
+    height: fit-content!important;
+}
+
+/*DataTables*/
+.icon-edit{
+   padding-inline: 7px;
+}
+.icon-delete{
+    padding-inline: 8px;
+}
+
+table tr th{
+    text-align: center!important;
+}
+
+.no-shadow tbody tr td{
+    /*box-shadow: none!important;*/
+    color: #25396f;
+}
+
+/*SPINNER*/
+.centrado{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    z-index: 5000;
+    position: fixed;
+}
+.oculto{
+    display: none;
+}
+/*------------------FOOTER--------------------*/
+.footer2 {
+    background: rgb(37, 76, 77);
+    padding-top: 70px;
+}
+.contact {
+    margin-top: 40px;
+}
+
+.contact .sub-titulo {
+    line-height: 1.5;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+ul.lik li a {
+    color: #fff;
+    font-size: 17px;
+    line-height: 27px;
+    text-decoration: none;
+    outline: none !important;
+    transition: .6s;
+}
+
+ul.lik li a:hover {
+    font-weight: bold;
+}
+
+li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.copyright {
+    background-color: #fff;
+    padding: 10px 0px;
+    margin-top: 70px;
+}
+
+.copyright p {
+    color: #023023;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    outline: none !important;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    margin: 6px;
+}
+
+.icon-redes {
+    width: 40px;
+    height: 40px;
+    margin: 6px;
+    transition: .6s;
+}
+
+.text-iconos {
+    font-weight: bold;
+}
+
+/*inicio*/
+.backg {
+    background-image: url("https://e.rpp-noticias.io/xlarge/2020/04/06/444844_924437.jpg");
+}
+
+.txt {
+    color: black;
+}
+
+.container {
+    max-width: 960px;
+}
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+    flex: 1;
+}
+
+@media (min-width: 768px) {
+    .flex-md-equal > * {
+        flex: 1;
+    }
+}

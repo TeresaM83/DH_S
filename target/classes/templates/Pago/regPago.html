@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="layout::menu-admin"></header>
+	<div th:replace="layout::titulo"></div>
+	<div class="row justify-content-center mx-0 my-4">
+		<div class="col-5">
+			<form th:action="@{/pago/registrar}" th:object="${pago}"
+				method="post">
+				<div>
+					<label>Seleccione el id del alquiler</label> <select
+						th:field="*{alquiler}" class="form-select">
+						<option th:each="alquiler:${listalquileres}"
+							th:text="${alquiler.id}" th:value="${alquiler.id}"></option>
+					</select>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Fecha de vencimiento</label> <input
+						type="date" th:field="*{fecha_pago}" required class="form-control"
+						id="fecha_pago"
+						placeholder="Ingrese la fecha de vencimiento del pago" />
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Fecha de pago</label> <input type="date"
+						th:field="*{fecha_pcliente}"required class="form-control"
+						id="fecha_pcliente"
+						placeholder="Ingrese la fecha de pago del cliente" />
+				</div>
+				<div>
+					<label>Seleccione el estado del pago</label> <select
+						th:field="*{estado}" class="form-select">
+						<option value="Pendiente">Pendiente</option>
+						<option value="Pagado">Pagado</option>
+					</select>
+				</div>
+				<div class="mt-2">
+					<button type="submit" class="btn btn-success" th:text="${button}"></button>
+					<!-- Boton Modal -->
+					<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+						data-bs-target="#cancelarModal">Cancelar</button>
+				</div>
+				<input type="hidden" th:field="*{id}" />
+			</form>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="cancelarModal" data-bs-backdrop="static"
+		tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">ADVERTENCIA</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">¿Seguro que desea cancelar la
+					operación?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">No</button>
+					<a class="btn btn-primary" href="/pago/listar">Sí</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout::footer-mant"></footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<section layout:fragment="contenido">
+
+    <button type="button" class="btn btn-success my-2" id="btnRegistrarCargo">Nuevo Cargo</button>
+    <table class="table table-hover table-bordered dt-responsive text-center no-shadow display nowrap py-3"
+           id="tabla-cargo" width="100%">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white">
+        </tbody>
+    </table>
+
+    <!--FORMULARIO MODAL-->
+    <div class="modal fade" id="mdlCargo" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="frmCargo">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="titulo"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="txtnombre" class="form-label">Nombre:</label> <input
+                                type="text" class="form-control" name=nombre id="txtnombre"
+                                placeholder="Ingrese el nombre del cargo" required>
+                        </div>
+                        <input type="hidden" name="id" id="hddid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary"
+                                data-bs-dismiss="modal" id="btnCancelar">Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="btnGuardarDatos"><i class="fas fa-save"></i>&nbsp;Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<th:block layout:fragment="page-scripts">
+    <script th:src="@{/js/Cargo/crudCargo.js}">
+    </script>
+</th:block>
+</body>
+</html>

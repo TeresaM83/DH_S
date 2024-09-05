@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+	<header th:replace="layout::menu-admin"></header>
+	<div th:replace="layout::titulo"></div>
+	<div class="row justify-content-center mx-0 my-4">
+		<div class="col-5">
+			<form th:action="@{/edificio/registrar}" th:object="${edificio}"
+				method="post" id="formEdificio" onsubmit="return enviar();" enctype="multipart/form-data">
+				<div class="mb-3">
+					<label class="form-label">Número de pisos</label> <input
+						type="number" min="1" pattern="^[0-9]+" th:field="*{n_pisos}"
+						class="form-control" id="n_pisos"
+						placeholder="Ingrese el número de pisos" required />
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Dirección</label> <input type="text"
+						th:field="*{direccion}" class="form-control" id="direccion"
+						placeholder="Ingrese la dirección" required />
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Imagen:</label>
+					<input type="file" class="form-control" name="archivo" id="formFile">
+				</div>
+				<div class="mt-2">
+					<button class="btn btn-success" th:text="${button}"></button>
+					<!-- Boton Modal -->
+					<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+						data-bs-target="#cancelarModal">Cancelar</button>
+				</div>
+				<input type="hidden" th:field="*{id}" />
+			</form>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="cancelarModal" data-bs-backdrop="static"
+		tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">ADVERTENCIA</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">¿Seguro que desea cancelar la
+					operación?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">No</button>
+					<a class="btn btn-primary" href="/edificio/listar">Sí</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="layout::footer-mant"></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{Layout/plantilla}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<section layout:fragment="contenido">
+    <div
+            th:if="${mensaje != null}" th:text="${mensaje}" class="alert"
+            th:classappend="'alert-danger text-center'">
+    </div>
+    <div class="table-responsive mx-5">
+        <a class="btn btn-success my-2" th:href="@{/contrato/registrar}">Crear
+            Contrato</a>
+        <table class="table text-center table-hover table-bordered table-ligth py-3" style="vertical-align: middle;"
+               id="tabla-contrato">
+            <thead>
+            <tr class="table-dark">
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Estadía (meses)</th>
+                <th>Fecha de Contrato</th>
+                <th>Edificio</th>
+                <th>Departamento piso</th>
+                <th>Garantía</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contrato:${contratos}">
+                <td th:text="${contrato.id}"></td>
+                <td th:text="${contrato.cliente.nombres}+' '+${contrato.cliente.a_paterno}+' '+${contrato.cliente.a_materno}">
+                </td>
+                <td th:text="${contrato.estadia_meses}"></td>
+                <td th:text="${contrato.fecha_contrato}"></td>
+                <td th:text="${contrato.departamento.edificio.direccion}"></td>
+                <td th:text="${contrato.departamento.piso}"></td>
+                <td th:text="${contrato.garantia}"></td>
+                <td><a class="btn btn-primary btn-xs fa fa-pencil mx-1 icon-edit"
+                       th:href="@{/contrato/editar/}+${contrato.id}"></a><a
+                        class="btn btn-danger btn-xs fa fa-trash mx-1 icon-delete"
+                        th:href="@{/contrato/eliminar/}+${contrato.id}"
+                        onclick="return confirm('Estás seguro que deseas eliminar?');"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+
+</html>
